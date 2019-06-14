@@ -14,7 +14,7 @@
 	html,body {
   font-family: 'Raleway', sans-serif;
   padding: 3em 2em;
-  font-size: 18px;
+  font-size: 20px;
   background: black;
   color: white
 }
@@ -28,12 +28,35 @@ h2 {
   color: #888;
   font-size: 2em;
 }
+.btn {
+  background-color: white; 
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.btn:hover {
+  background-color: red; /* Green */
+  color: white;
+}
+::selection {
+  background: red; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: red; /* Gecko Browsers */
+}
 </style>
 
 </head>
 <body>
 
 <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+  <div class="jumbotron">
 <div align="center">
 <h1>I am Pablo,
   <span
@@ -42,6 +65,11 @@ h2 {
      data-rotate='[ "a CSS Dev.", "an Engineer.", "a Backend Dev.", "an Account Manager.", "Boss!" ]'></span>
 </h1>
 <h2>get ready to redefine your business.</h2>
+
+<div class="col text-center">
+  <button type="button" class="btn btn-default btn-lg" align="center">redefine</button>
+</div>
+</div>
 </div>
 </body>
 </html>
