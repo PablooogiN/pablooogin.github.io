@@ -4,9 +4,11 @@
 <head>
 
   <meta charset="utf-8">
+  <title>Pablo Ginebra's Personal Website with Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="In this website I go in depth of what is in my resume, explain the different technologies that
+  I know, and my qualifications. I am a computer science major with c++, python, api, and source control knowledge.">
+  <meta name="author" content="Pablo Ginebra">
 
   <title>Pablo Ginebra</title>
   <link rel="shortcut icon" href="img/pgicon.ico">
@@ -63,10 +65,19 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h1 class="mb-0">Pablo
+
+<h1>
+  <span class="text-primary">I am Pablo,</span>
+  <span
+     class="txt-rotate"
+     data-period="10000"
+     data-rotate='[ "a Software Engineer.", "a Full Stack Dev.", "an Account Manager.", "Designer!", "?" ]'></span>
+</h1>
+        <!--<h1 class="mb-0">Pablo
           <span class="text-primary">Ginebra</span>
-        </h1>
-        <div class="subheading mb-5">Houston Texas, 77077 · (832) 419-2078 ·
+        </h1>-->
+        <br>
+        <div class="subheading mb-8">Houston Texas, 77077 · (832) 419-2078 ·
           <a href="mailto:pablo.i.ginebra@gmail.com">pablo.i.ginebra@gmail.com</a>
         </div>
         <p class="lead mb-5">I am a Computer Engineer from Texas A&M University. I have expreience using C++, Python, and SQL in a professional environment. My expected graduation is May 2021 with a degree in Computer Engineering, as well as a minor in Business.</p>
@@ -339,6 +350,64 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 5) || 1000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+</script>
 
 </body>
 
